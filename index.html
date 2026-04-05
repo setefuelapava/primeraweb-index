@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto HTML</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333333;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .page-wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header,
+        main,
+        footer {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 30px;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: #2c3e50;
+            margin: 0;
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        h1,
+        h2,
+        p,
+        li,
+        label {
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: #34495e;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        h4 {
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: #34495e;
+            margin: 10px 0;
+        }
+
+        .section-header-row {
+            display: grid;
+            grid-template-columns: 250px minmax(250px, 1fr) 280px;
+            gap: 20px;
+            align-items: start;
+            margin-bottom: 30px;
+        }
+
+        .info-box,
+        .news-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            padding: 20px;
+            color: #333333;
+        }
+
+        .info-box h3,
+        .news-box h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            color: #495057;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            border-radius: 8px;
+            background: #ffffff;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #dee2e6;
+        }
+
+        .info-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .info-icon {
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #007bff;
+            color: #ffffff;
+            font-size: 14px;
+        }
+
+        .info-link {
+            color: #333333;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .news-box img {
+            width: 100%;
+            height: auto;
+            max-height: 80px;
+            object-fit: contain;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+
+        .news-box h4 a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .news-box h4 a:hover {
+            text-decoration: underline;
+        }
+
+        .twitch-section {
+            text-align: center;
+        }
+
+        .twitch-player {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .twitch-player iframe {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .twitch-player p {
+            margin: 10px 0;
+            font-size: 1rem;
+            color: #495057;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        form {
+            display: grid;
+            gap: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: #495057;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 14px;
+            border-radius: 8px;
+            border: 1px solid #ced4da;
+            background: #ffffff;
+            color: #333333;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
+            resize: vertical;
+        }
+
+        input[type="text"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+        }
+
+        input[type="submit"] {
+            width: fit-content;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 8px;
+            background: #007bff;
+            color: #ffffff;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background: #0056b3;
+        }
+
+        .success-gif {
+            display: none;
+            width: 80px;
+            height: 40px;
+            margin-left: 10px;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .success-gif.show {
+            display: inline-block;
+            opacity: 1;
+            animation: fadeOut 5s forwards;
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 30px;
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+
+        @media (max-width: 900px) {
+            .section-header-row {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .section-header-row > div:nth-child(2) {
+                order: -1;
+                text-align: center;
+            }
+
+            .page-wrapper {
+                padding: 20px 15px;
+            }
+
+            header,
+            main,
+            footer {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .twitch-player iframe {
+                width: 100%;
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <header>
+            <h1>Primera web</h1>
+        </header>
+        <main>
+            <section>
+                <h2>Introducción</h2>
+                <p>No te fijes mucho.</p>
+            </section>
+            <section>
+                <div class="section-header-row">
+                    <div class="info-box">
+                        <h3>Información</h3>
+                        <a class="info-link" href="https://www.timeanddate.com/worldclock/argentina/buenos-aires" target="_blank">
+                            <div class="info-item">
+                                <div class="info-icon">⏰</div>
+                                <div>Hora: 16:30</div>
+                            </div>
+                        </a>
+                        <a class="info-link" href="https://www.google.com/maps/place/Buenos+Aires" target="_blank">
+                            <div class="info-item">
+                                <div class="info-icon">📍</div>
+                                <div>Lugar: Buenos Aires</div>
+                            </div>
+                        </a>
+                        <a class="info-link" href="https://www.accuweather.com/en/ar/buenos-aires/7896/weather-forecast/7896" target="_blank">
+                            <div class="info-item">
+                                <div class="info-icon">☀️</div>
+                                <div>Clima: Soleado</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div>
+                        <h2>Breve presentación</h2>
+                    </div>
+                    <div class="news-box">
+                        <h3>Noticias</h3>
+                        <img src="https://www.eldestapeweb.com/img/estructura/logo.png" alt="El Destape Web" style="width:100%; height:auto; max-height:80px; object-fit:contain; margin-bottom:10px; border-radius:8px;">
+                        <div id="news-container"></div>
+                    </div>
+                </div>
+                <p>para ser mi primera pagina he de decir que me siento conforme con ressultado, quizas podria agregar agunas cositas mas pero no se si se vea...bueno comentarios abajo porfis.</p>
+            </section>
+            <section class="twitch-section">
+                <h2>Twitch Stream</h2>
+                <div class="twitch-player">
+                    <iframe src="https://player.twitch.tv/?channel=setefuelapava&parent=example.com" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620" style="display: block;"></iframe>
+                    <p style="margin-top: 10px; font-size: 0.9rem; color: #6c757d;">Si el reproductor no carga, es porque la página está en local. Al alojarla en línea, funcionará correctamente.</p>
+                </div>
+            </section>
+            <section>
+                <h2>Contacto</h2>
+                <form id="contact-form" action="https://docs.google.com/forms/d/e/1FAIpQLSf_NeTghg_UX7PvsTeJIMGp5yQ7dykIFTfcJ8n47-BQxpIelQ/formResponse" method="post" target="hidden_iframe">
+                    <div>
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="entry.1470300981" placeholder="Escribe tu nombre" required>
+                    </div>
+                    <div>
+                        <label for="apellido">Apellido</label>
+                        <input type="text" id="apellido" name="entry.926299158" placeholder="Escribe tu apellido" required>
+                    </div>
+                    <div>
+                        <label for="comentario">Comentario</label>
+                        <textarea id="comentario" name="entry.784681041" rows="5" placeholder="Escribe tu comentario" required></textarea>
+                    </div>
+                    <input type="submit" value="Enviar">
+                    <img id="success-gif" class="success-gif" src="particula1.gif" alt="Éxito">
+                </form>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2026 Proyecto HTML</p>
+        </footer>
+    </div>
+    <iframe name="hidden_iframe" style="display:none;"></iframe>
+    <script>
+        var newsData = [
+            {
+                title: 'El increíble despilfarro de 110.000 millones de dólares',
+                summary: 'En poco más de dos años de gobierno de Milei, con ingreso récord de divisas y apoyo del FMI y EE.UU., el saldo es una economía estancada, destrucción de empleos y familias asfixiadas por las deudas.',
+                url: 'https://www.eldestapeweb.com/economia/dolares/el-increible-despilfarro-de-110-000-millones-de-dolares-2026450519',
+                thumbnail: 'https://www.eldestapeweb.com/img/estructura/logo.png'
+            },
+            {
+                title: 'La caída de Milei y la geopolítica del perdedor',
+                summary: 'Análisis político sobre la situación actual del gobierno.',
+                url: 'https://www.eldestapeweb.com/politica/panorama-politico/la-caída-de-milei-y-la-geopolítica-del-perdedor-2026450519',
+                thumbnail: 'https://www.eldestapeweb.com/img/estructura/logo.png'
+            },
+            {
+                title: 'Traidores a la patria: guerra cognitiva e injerencia extranjera',
+                summary: 'El gobierno salió a denunciar una "Gran Conspiración contra el pueblo argentino". El problema más importante es que quienes deberían cuidarnos de eso no lo hacen.',
+                url: 'https://www.eldestapeweb.com/politica/javier-milei/traidores-a-la-patria-guerra-cognitiva-e-injerencia-extranjera-202644213019',
+                thumbnail: 'https://www.eldestapeweb.com/img/estructura/logo.png'
+            }
+        ];
+
+        function renderNews() {
+            var container = document.getElementById('news-container');
+            container.innerHTML = '';
+            newsData.forEach(function(item) {
+                var h4 = document.createElement('h4');
+                h4.style.margin = '10px 0';
+                h4.style.fontSize = '1.1rem';
+                h4.style.color = '#34495e';
+                var link = document.createElement('a');
+                link.href = item.url;
+                link.target = '_blank';
+                link.textContent = item.title;
+                link.style.color = '#007bff';
+                link.style.textDecoration = 'none';
+                link.style.fontWeight = '500';
+                h4.appendChild(link);
+                container.appendChild(h4);
+            });
+        }
+
+        renderNews();
+
+        document.getElementById('contact-form').addEventListener('submit', function() {
+            var gif = document.getElementById('success-gif');
+            gif.classList.add('show');
+            setTimeout(function() {
+                gif.classList.remove('show');
+                gif.style.display = 'none';
+            }, 5000);
+            setTimeout(function() {
+                document.getElementById('contact-form').reset();
+            }, 500);
+        });
+    </script>
+</body>
+</html>
