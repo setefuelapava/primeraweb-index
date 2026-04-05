@@ -486,17 +486,17 @@
             document.getElementById('current-time-display').textContent = `Hora: ${hours}:${minutes}:${seconds}`;
 
             // Actualizar eventos basados en la hora actual
-            const event = regionalEvents.find(e => h >= e.start && h < e.end) || { text: "Sin eventos programados" };
+            const event = regionalEvents.find(e => h >= e.start && h < e.end);
             if (event) {
                 document.getElementById('events-display').textContent = event.text;
+            } else {
+                document.getElementById('events-display').textContent = "Sin eventos programados";
             }
 
             // Actualizar clima basado en la hora actual
-            const weather = weatherData.find(w => h >= w.start && h < w.end) || { text: "Clima: Desconocido", icon: "❓" };
-            if (weather) {
-                document.getElementById('weather-display').textContent = weather.text;
-                document.getElementById('weather-icon').textContent = weather.icon;
-            }
+            const weather = weatherData.find(w => h >= w.start && h < w.end) || { text: "Clima: Estable", icon: "☁️" };
+            document.getElementById('weather-display').textContent = weather.text;
+            document.getElementById('weather-icon').textContent = weather.icon;
         }
 
         // Llama a la función una vez al cargar la página
