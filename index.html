@@ -348,7 +348,6 @@
                     </div>
                     <div class="news-box">
                         <h3>Noticias</h3>
-                        <img src="https://www.eldestapeweb.com/img/estructura/logo.png" alt="El Destape Web" style="width:100%; height:auto; max-height:80px; object-fit:contain; margin-bottom:10px; border-radius:8px;">
                         <div id="news-container"></div>
                     </div>
                 </div>
@@ -409,22 +408,34 @@
     <script>
         const newsData = [
             {
-                title: 'El increíble despilfarro de 110.000 millones de dólares',
-                summary: 'En poco más de dos años de gobierno de Milei, con ingreso récord de divisas y apoyo del FMI y EE.UU., el saldo es una economía estancada, destrucción de empleos y familias asfixiadas por las deudas.',
+                title: 'Crisis económica: El impacto en los salarios reales',
                 url: 'https://www.eldestapeweb.com/economia/dolares/el-increible-despilfarro-de-110-000-millones-de-dolares-2026450519',
-                thumbnail: 'https://www.eldestapeweb.com/img/estructura/logo.png'
+                thumbnail: 'https://media.eldestapeweb.com/adjuntos/311/imagenes/041/140/0041140356.jpg'
             },
             {
-                title: 'La caída de Milei y la geopolítica del perdedor',
-                summary: 'Análisis político sobre la situación actual del gobierno.',
+                title: 'Geopolítica: El nuevo mapa de alianzas regionales',
                 url: 'https://www.eldestapeweb.com/politica/panorama-politico/la-caída-de-milei-y-la-geopolítica-del-perdedor-2026450519',
-                thumbnail: 'https://www.eldestapeweb.com/img/estructura/logo.png'
+                thumbnail: 'https://media.eldestapeweb.com/adjuntos/311/imagenes/041/140/0041140360.jpg'
             },
             {
-                title: 'Traidores a la patria: guerra cognitiva e injerencia extranjera',
-                summary: 'El gobierno salió a denunciar una "Gran Conspiración contra el pueblo argentino". El problema más importante es que quienes deberían cuidarnos de eso no lo hacen.',
+                title: 'Guerra cognitiva: La nueva denuncia del Gobierno',
                 url: 'https://www.eldestapeweb.com/politica/javier-milei/traidores-a-la-patria-guerra-cognitiva-e-injerencia-extranjera-202644213019',
-                thumbnail: 'https://www.eldestapeweb.com/img/estructura/logo.png'
+                thumbnail: 'https://media.eldestapeweb.com/adjuntos/311/imagenes/041/140/0041140358.jpg'
+            },
+            {
+                title: 'Movilización docente: Reclamo por el presupuesto',
+                url: 'https://www.eldestapeweb.com/sociedad/educacion/masiva-marcha-en-defensa-de-la-universidad-publica',
+                thumbnail: 'https://media.eldestapeweb.com/adjuntos/311/imagenes/041/140/0041140354.jpg'
+            },
+            {
+                title: 'Cultura: El regreso de los festivales populares',
+                url: 'https://www.eldestapeweb.com/cultura/musica/festivales-2024-todo-lo-que-tenes-que-saber',
+                thumbnail: 'https://media.eldestapeweb.com/adjuntos/311/imagenes/041/140/0041140352.jpg'
+            },
+            {
+                title: 'Deportes: El mercado de pases se mueve fuerte',
+                url: 'https://www.eldestapeweb.com/deportes/futbol/los-fichajes-mas-importantes-del-año',
+                thumbnail: 'https://media.eldestapeweb.com/adjuntos/311/imagenes/041/140/0041140350.jpg'
             }
         ];
 
@@ -432,10 +443,19 @@
             const container = document.getElementById('news-container');
             container.innerHTML = '';
             newsData.forEach(item => {
+                const newsItem = document.createElement('div');
+                newsItem.className = 'news-item';
+                
+                const img = document.createElement('img');
+                img.src = item.thumbnail;
+                img.alt = item.title;
+                img.onerror = () => { img.src = 'https://www.eldestapeweb.com/img/estructura/logo.png'; };
+                
                 const h4 = document.createElement('h4');
-                h4.style.margin = '10px 0';
-                h4.style.fontSize = '1.1rem';
+                h4.style.margin = '5px 0';
+                h4.style.fontSize = '0.9rem';
                 h4.style.color = '#ffffff';
+                
                 const link = document.createElement('a');
                 link.href = item.url;
                 link.target = '_blank';
@@ -443,8 +463,11 @@
                 link.style.color = '#ff007f';
                 link.style.textDecoration = 'none';
                 link.style.fontWeight = '400';
+                
                 h4.appendChild(link);
-                container.appendChild(h4);
+                newsItem.appendChild(img);
+                newsItem.appendChild(h4);
+                container.appendChild(newsItem);
             });
         }
 
