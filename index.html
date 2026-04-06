@@ -134,8 +134,8 @@
             color: #ffffff;
             backdrop-filter: blur(5px);
             height: 600px;
-            overflow: hidden;
-            padding: 0;
+            overflow-y: auto;
+            padding: 20px;
         }
 
         .info-box h3 {
@@ -179,10 +179,24 @@
             font-weight: 400;
         }
 
-        .news-box iframe {
+        #news-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .news-item {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .news-item img {
             width: 100%;
-            height: 100%;
-            border: none;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 0, 127, 0.2);
         }
 
         .news-box h4 a {
@@ -353,11 +367,11 @@
                         </div>
                     </div>
                     <div class="news-box">
-                        <iframe 
-                            src="https://www.eldestapeweb.com/" 
-                            title="El Destape en vivo"
-                            loading="lazy">
-                        </iframe>
+                        <h3 style="display: flex; justify-content: space-between; align-items: center;">
+                            Noticias en Vivo 
+                            <a href="https://www.eldestapeweb.com/" target="_blank" style="font-size: 0.7rem; color: #bc13fe; text-decoration: none;">Abrir sitio completo ↗</a>
+                        </h3>
+                        <div id="news-container"></div>
                     </div>
                 </div>
                 <p>para ser mi primera pagina he de decir que me siento conforme con ressultado, quizas podria agregar agunas cositas mas pero no se si se vea...bueno comentarios abajo porfis.</p>
@@ -415,6 +429,74 @@
     </div>
     <iframe name="hidden_iframe" style="display:none;"></iframe>
     <script>
+        const newsData = [
+            {
+                title: 'El fuerte cruce entre el Gobierno y las provincias por los fondos',
+                url: 'https://www.eldestapeweb.com/politica/coparticipacion/fuerte-cruce-gobierno-provincias',
+                thumbnail: 'https://cdn.eldestapeweb.com/eldestape/022024/1708456789123.webp?cw=800&ch=450&extw=jpg'
+            },
+            {
+                title: 'Nuevos aumentos: Cómo quedan las tarifas de gas en mayo',
+                url: 'https://www.eldestapeweb.com/economia/tarifas/aumento-gas-mayo-2024',
+                thumbnail: 'https://cdn.eldestapeweb.com/eldestape/022024/1708456789124.webp?cw=800&ch=450&extw=jpg'
+            },
+            {
+                title: 'Paro nacional: Los gremios confirman la medida de fuerza',
+                url: 'https://www.eldestapeweb.com/politica/sindicatos/paro-nacional-confirmado-cgt',
+                thumbnail: 'https://cdn.eldestapeweb.com/eldestape/022024/1708456789125.webp?cw=800&ch=450&extw=jpg'
+            },
+            {
+                title: 'Cine nacional: Gran estreno en salas de todo el país',
+                url: 'https://www.eldestapeweb.com/cultura/cine/estreno-cine-argentino-exito',
+                thumbnail: 'https://cdn.eldestapeweb.com/eldestape/022024/1708456789126.webp?cw=800&ch=450&extw=jpg'
+            },
+            {
+                title: 'Fútbol: Las novedades del mercado antes del cierre',
+                url: 'https://www.eldestapeweb.com/deportes/futbol/mercado-pases-novedades',
+                thumbnail: 'https://cdn.eldestapeweb.com/eldestape/022024/1708456789127.webp?cw=800&ch=450&extw=jpg'
+            },
+            {
+                title: 'Tecnología: El impacto de la IA en el mercado laboral',
+                url: 'https://www.eldestapeweb.com/tecnologia/ia/inteligencia-artificial-empleo',
+                thumbnail: 'https://cdn.eldestapeweb.com/eldestape/022024/1708456789128.webp?cw=800&ch=450&extw=jpg'
+            }
+        ];
+
+        function renderNews() {
+            const container = document.getElementById('news-container');
+            if (!container) return;
+            container.innerHTML = '';
+            newsData.forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'news-item';
+                
+                const img = document.createElement('img');
+                // Si la imagen da error, cargamos una de respaldo y ajustamos el estilo
+                img.onerror = () => {
+                    img.src = 'https://www.eldestapeweb.com/img/estructura/logo.png';
+                    img.style.objectFit = 'contain';
+                    img.style.background = 'rgba(0,0,0,0.5)';
+                };
+                img.src = item.thumbnail;
+                img.alt = item.title;
+                
+                const h4 = document.createElement('h4');
+                const link = document.createElement('a');
+                link.href = item.url;
+                link.target = '_blank';
+                link.textContent = item.title;
+                link.style.color = '#ff007f';
+                link.style.textDecoration = 'none';
+                
+                h4.appendChild(link);
+                itemDiv.appendChild(img);
+                itemDiv.appendChild(h4);
+                container.appendChild(itemDiv);
+            });
+        }
+
+        renderNews();
+
         // Actualizar el año en el footer
         document.getElementById('year').textContent = new Date().getFullYear();
 
