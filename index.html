@@ -6,6 +6,12 @@
     <title>Voces de la Calle | Sonando Fuerte</title>
     <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&family=Kanit:wght@300;600;900&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #ff007f;
+            --accent-red: #ff3366;
+            --font-main: 'Kanit', sans-serif;
+        }
+
         body {
             margin: 0;
             font-family: 'Kanit', sans-serif;
@@ -118,6 +124,37 @@
             margin-bottom: 15px;
             text-shadow: 0 0 30px #ff007f;
             text-transform: uppercase;
+        }
+
+        .main-title:hover {
+            animation: title-glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+        }
+
+        @keyframes title-glitch {
+            0% {
+                transform: translate(0);
+                text-shadow: 0 0 30px var(--primary-color);
+            }
+            20% {
+                transform: translate(-2px, 2px);
+                text-shadow: 2px -2px #00fff9, -2px 2px #ff00c1;
+            }
+            40% {
+                transform: translate(-2px, -2px);
+                text-shadow: -2px 2px #00fff9, 2px -2px #ff00c1;
+            }
+            60% {
+                transform: translate(2px, 2px);
+                text-shadow: 2px 2px #00fff9, -2px -2px #ff00c1;
+            }
+            80% {
+                transform: translate(2px, -2px);
+                text-shadow: -2px -2px #00fff9, 2px 2px #ff00c1;
+            }
+            100% {
+                transform: translate(0);
+                text-shadow: 0 0 30px var(--primary-color);
+            }
         }
 
         .tagline {
@@ -322,6 +359,77 @@
             margin-bottom: 15px;
         }
 
+        /* Estilos del Chat Integrado */
+        .chat-integrated {
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            border: 1px solid rgba(255, 0, 127, 0.4) !important;
+            box-shadow: 0 0 20px rgba(255, 0, 127, 0.15) !important;
+        }
+
+        .chat-body-integrated {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        #chatMessages {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            word-wrap: break-word;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-color) transparent;
+        }
+
+        #chatInputArea {
+            display: flex;
+            border-top: 1px solid #333;
+            background: #000;
+        }
+
+        #msgInput {
+            flex-grow: 1;
+            background: transparent;
+            border: none;
+            color: #fff;
+            padding: 10px;
+            outline: none;
+        }
+
+        #nickOverlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 2, 15, 0.95);
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border-radius: 8px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-red);
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 8px;
+            animation: pulse 1.5s infinite;
+        }
+
         form {
             display: grid;
             gap: 20px;
@@ -510,10 +618,31 @@
                     </div>
                 </div>
             </section>
-            <section>
-                <h2>Se Te Fue La Pava -FM</h2>
-                <div class="cstrEmbed" data-type="newStreamPlayer" data-publicToken="902149be-7778-45f0-8e91-58b61e2cf6b5" data-theme="light" data-color="6C2BDD" data-channelId="" data-rendered="false">
-                    <a href="https://www.caster.fm">Shoutcast Hosting</a> <a href="https://www.caster.fm">Stream Hosting</a> <a href="https://www.caster.fm">Radio Server Hosting</a>
+            <section id="radio-chat">
+                <div class="section-header-row">
+                    <div class="radio-box">
+                        <h2>Se Te Fue La Pava -FM</h2>
+                        <div class="cstrEmbed" data-type="newStreamPlayer" data-publicToken="902149be-7778-45f0-8e91-58b61e2cf6b5" data-theme="dark" data-color="ff007f" data-channelId="" data-rendered="false">
+                            <a href="https://www.caster.fm">Shoutcast Hosting</a> <a href="https://www.caster.fm">Stream Hosting</a> <a href="https://www.caster.fm">Radio Server Hosting</a>
+                        </div>
+                    </div>
+                    <div class="info-box chat-integrated">
+                        <h3>CHAT EN VIVO <span class="status-dot"></span></h3>
+                        <div class="chat-body-integrated" id="chatBody">
+                            <div id="nickOverlay">
+                                <p style="color: var(--primary-color); font-weight: 900;">¿CUÁL ES TU NICK?</p>
+                                <input type="text" id="nickInput" style="width: 80%;" placeholder="Tu nombre callejero...">
+                                <button onclick="setNick()" class="btn-live" style="padding: 5px 20px; font-size: 0.8rem;">ENTRAR</button>
+                            </div>
+                            <div id="chatMessages"></div>
+                            <div id="chatInputArea">
+                                <input type="text" id="msgInput" placeholder="Escribí algo..." onkeypress="if(event.key==='Enter') sendMsg()">
+                                <button onclick="sendMsg()" style="background: var(--primary-color); border: none; padding: 0 15px; cursor: pointer;">
+                                    <span style="font-weight: 900; color: #000;">></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <script src="https://cdn.cloud.caster.fm/widgets/embed.js"></script>
             </section>
@@ -540,10 +669,71 @@
             </div>
         </footer>
     </div>
+
     <iframe name="hidden_iframe" style="display:none;"></iframe>
     <script>
         // Actualizar el año en el footer
         document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Lógica del Chat Independiente
+        let userNick = null;
+        let userColor = null;
+        
+        // Reemplaza esta URL con la que te asigne tu hosting PHP (ej: https://tu-radio.000webhostapp.com/chat.php)
+        const CHAT_API_URL = 'chat.php'; 
+
+        function setNick() {
+            const input = document.getElementById('nickInput');
+            if (input.value.trim() !== "") {
+                userNick = input.value.trim();
+                // Colores vibrantes estilo Cyberpunk
+                const colors = ['#00fff9', '#ff00c1', '#bc13fe', '#00ff00', '#ffff00', '#ff8c00'];
+                userColor = colors[Math.floor(Math.random() * colors.length)];
+                
+                document.getElementById('nickOverlay').style.display = 'none';
+                loadMessages();
+            }
+        }
+
+        async function sendMsg() {
+            const input = document.getElementById('msgInput');
+            const msg = input.value.trim();
+            if (!msg || !userNick) return;
+
+            const formData = new FormData();
+            formData.append('nick', userNick);
+            formData.append('color', userColor);
+            formData.append('msg', msg);
+
+            input.value = '';
+            const response = await fetch(
+        }
+
+        async function loadMessages() {
+            try {
+                c
+                r
+                console.log("Esperando servidor PHP...");
+            }
+        }
+
+        function renderMessages(msgs) {
+            const container = document.getElementById('chatMessages');
+            if (!Array.isArray(msgs)) return;
+            
+            container.innerHTML = msgs.map(m => `
+                <div style="margin-bottom: 4px; line-height: 1.4;">
+                    <span style="color: ${m.color}; font-weight: 900; text-transform: uppercase; font-size: 0.8rem;">${m.nick}:</span>
+                    <span style="color: #eee;">${m.msg}</span>
+                </div>
+            `).join('');
+            container.scrollTop = container.scrollHeight;
+        }
+
+        // Recargar mensajes cada 3 segundos
+        setInterval(() => {
+            if (userNick) loadMessages();
+        }, 3000);
 
         document.getElementById('contact-form').addEventListener('submit', () => {
             const gif = document.getElementById('success-gif');
