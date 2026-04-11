@@ -23,8 +23,13 @@ const StatsApp = {
         if (savedData) {
             try {
                 const parsed = JSON.parse(savedData);
-                // Verificamos que los datos tengan las propiedades necesarias
-                if (parsed[0] && typeof parsed[0].pos !== 'undefined') {
+                
+                // Sincronización: Si el número de candidatos o los nombres cambiaron en el código,
+                // reseteamos el almacenamiento para mostrar los nuevos datos hardcodeados.
+                const storedNames = parsed.map(c => c.name).join(',');
+                const currentNames = this.candidates.map(c => c.name).join(',');
+
+                if (storedNames === currentNames) {
                     this.candidates = parsed;
                 }
             } catch (e) {

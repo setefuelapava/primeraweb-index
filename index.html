@@ -415,8 +415,8 @@
         }
 
         @keyframes barGrow {
-            from { height: 0; opacity: 0; }
-            to { opacity: 1; }
+            from { transform: scaleY(0); opacity: 0; }
+            to { transform: scaleY(1); opacity: 1; }
         }
 
         .bar {
@@ -426,6 +426,7 @@
             transition: height 1.5s cubic-bezier(0.19, 1, 0.22, 1);
             box-shadow: 0 0 15px rgba(0,0,0,0.5);
             animation: barGrow 1.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+            transform-origin: bottom;
         }
 
         .bar-pos { background: #ff007f; box-shadow: 0 0 12px #ff007f; }
