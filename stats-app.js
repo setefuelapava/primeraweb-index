@@ -22,7 +22,11 @@ const StatsApp = {
         const savedData = localStorage.getItem('candidates_data');
         if (savedData) {
             try {
-                this.candidates = JSON.parse(savedData);
+                const parsed = JSON.parse(savedData);
+                // Verificamos que los datos tengan las propiedades necesarias
+                if (parsed[0] && typeof parsed[0].pos !== 'undefined') {
+                    this.candidates = parsed;
+                }
             } catch (e) {
                 console.error("Error cargando datos, reiniciando...");
                 localStorage.removeItem('candidates_data');

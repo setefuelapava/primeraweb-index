@@ -359,6 +359,31 @@
             display: flex;
             flex-direction: column;
             padding: 20px !important;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Efecto de lluvia neón en el fondo de la box de estadísticas */
+        .stats-box-dynamic::before {
+            content: '';
+            position: absolute;
+            top: -100%; left: -100%;
+            width: 300%; height: 300%;
+            background-image: linear-gradient(135deg, 
+                transparent 0%, 
+                transparent 48%, 
+                rgba(255, 0, 127, 0.05) 50%, 
+                transparent 52%, 
+                transparent 100%);
+            background-size: 60px 60px;
+            animation: stats-drift 4s linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes stats-drift {
+            from { transform: translate(0, 0); }
+            to { transform: translate(60px, 60px); }
         }
 
         #candidates-display {
@@ -366,9 +391,11 @@
             justify-content: space-between;
             align-items: flex-end;
             flex-grow: 1;
-            height: 220px;
+            height: 180px;
             margin-top: 25px;
             padding: 0 5px;
+            position: relative;
+            z-index: 1;
         }
 
         .candidate-column {
@@ -382,9 +409,14 @@
             display: flex;
             align-items: flex-end;
             gap: 6px;
-            height: 160px; /* Definimos una altura fija para el área de dibujo de las barras */
+            height: 100%;
             position: relative;
             margin-bottom: 5px;
+        }
+
+        @keyframes barGrow {
+            from { height: 0; opacity: 0; }
+            to { opacity: 1; }
         }
 
         .bar {
@@ -393,6 +425,7 @@
             border-radius: 4px 4px 0 0;
             transition: height 1.5s cubic-bezier(0.19, 1, 0.22, 1);
             box-shadow: 0 0 15px rgba(0,0,0,0.5);
+            animation: barGrow 1.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
         }
 
         .bar-pos { background: #ff007f; box-shadow: 0 0 12px #ff007f; }
