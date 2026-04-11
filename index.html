@@ -321,6 +321,21 @@
             filter: drop-shadow(0 0 2px var(--primary-color));
         }
 
+        .retro-clock {
+            font-family: 'Kanit', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--primary-color);
+            text-align: center;
+            text-shadow: 0 0 10px var(--primary-color), 0 0 20px #bc13fe;
+            margin-bottom: 15px;
+            letter-spacing: 4px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 0, 127, 0.2);
+        }
+
         .schedule-item {
             display: flex;
             justify-content: space-between;
@@ -608,7 +623,8 @@
                             </div>
                         </div>
                         <div class="weather-wrapper">
-                            <a class="weatherwidget-io" href="https://forecast7.com/es/n36s14/rauch/" data-label_1="RAUCH" data-label_2="CLIMA" data-theme="pure" data-basecolor="" data-textcolor="#ffffff" data-highcolor="#ff007f" data-lowcolor="#bc13fe" >RAUCH CLIMA</a>
+                            <div id="digital-clock" class="retro-clock">00:00:00</div>
+                            <a class="weatherwidget-io" href="https://forecast7.com/es/n36s14/rauch/" data-label_1="RAUCH" data-label_2="PRONÓSTICO" data-font="Kanit" data-icons="Climacons Animated" data-days="7" data-theme="pure" data-basecolor="rgba(0,0,0,0)" data-textcolor="#ffffff" data-highcolor="#ff007f" data-lowcolor="#bc13fe" >RAUCH CLIMA</a>
                             <script>
                             !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
                             </script>
@@ -711,6 +727,17 @@
             // Este log confirma que la acción se vinculó.
             console.log("Sintonizando Voces de la Calle...");
         });
+
+        // Reloj Digital Retro-Neon
+        function updateClock() {
+            const now = new Date();
+            const h = String(now.getHours()).padStart(2, '0');
+            const m = String(now.getMinutes()).padStart(2, '0');
+            const s = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('digital-clock').textContent = `${h}:${m}:${s}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
 
         document.getElementById('contact-form').addEventListener('submit', () => {
             const gif = document.getElementById('success-gif');
