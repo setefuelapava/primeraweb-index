@@ -30,8 +30,10 @@ const StatsApp = {
 
     applySmallVariation: function() {
         this.candidates.forEach(c => {
-            const variation = Math.floor(Math.random() * 5) - 2; // +/- 2%
-            c.pos = Math.max(0, Math.min(100, c.pos + variation));
+            const varPos = Math.floor(Math.random() * 5) - 2; // +/- 2%
+            const varNeg = Math.floor(Math.random() * 5) - 2;
+            c.pos = Math.max(5, Math.min(95, c.pos + varPos));
+            c.neg = Math.max(5, Math.min(95, c.neg + varNeg));
         });
         this.render();
     },

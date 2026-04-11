@@ -352,7 +352,7 @@
 
         /* Box de Estadísticas Políticas */
         .stats-box-dynamic {
-            min-height: 320px;
+            min-height: 340px;
             background: #000000 !important;
             filter: drop-shadow(0 0 5px var(--primary-color));
             display: flex;
@@ -362,11 +362,12 @@
 
         #candidates-display {
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
             align-items: flex-end;
             flex-grow: 1;
-            height: 200px;
-            margin-top: 20px;
+            height: 220px;
+            margin-top: 25px;
+            padding: 0 5px;
         }
 
         .candidate-column {
@@ -379,19 +380,21 @@
         .bar-group {
             display: flex;
             align-items: flex-end;
-            gap: 4px;
+            gap: 6px;
             height: 100%;
+            position: relative;
         }
 
         .bar {
-            width: 14px;
+            width: 18px;
             position: relative;
-            border-radius: 2px 2px 0 0;
-            transition: height 1s ease-in-out;
+            border-radius: 4px 4px 0 0;
+            transition: height 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
         }
 
-        .bar-pos { background: #ff007f; box-shadow: 0 0 10px #ff007f; } /* Magenta Neón */
-        .bar-neg { background: #ccff00; box-shadow: 0 0 10px #ccff00; } /* Amarillo Neón */
+        .bar-pos { background: #ff007f; box-shadow: 0 0 12px #ff007f; }
+        .bar-neg { background: #ccff00; box-shadow: 0 0 12px #ccff00; }
 
         .perc-tag {
             font-size: 0.55rem;
@@ -409,10 +412,11 @@
             text-align: center;
             line-height: 1.1;
             font-weight: 600;
-            height: 35px;
+            height: 40px;
             display: flex;
             align-items: center;
             word-break: break-word;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
         }
 
         .stats-legend {
