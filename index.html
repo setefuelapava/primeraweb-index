@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Voces de la Calle | Sonando Fuerte</title>
-    <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&family=Kanit:wght@300;600;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&family=Kanit:wght@100;300;600;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-color: #ff007f;
@@ -326,24 +326,43 @@
 
         .retro-clock {
             font-family: 'Kanit', sans-serif;
-            font-size: 3.2rem;
-            font-weight: 300; /* Tipografía delgada como pediste */
+            font-size: 3.5rem;
+            font-weight: 100; /* Tipografía ultra delgada para apreciar el fondo */
             color: var(--primary-color);
             text-align: center;
-            text-shadow: 0 0 15px rgba(255, 0, 127, 0.7);
-            letter-spacing: 6px;
+            text-shadow: 0 0 10px rgba(255, 0, 127, 0.4);
+            letter-spacing: 8px;
             margin: 10px 0;
+        }
+
+        .weather-alert {
+            font-size: 0.65rem;
+            color: #888;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+            border-bottom: 1px solid rgba(255, 0, 127, 0.1);
+            padding-bottom: 5px;
+            width: 100%;
+        }
+
+        .alert-icon {
+            color: var(--primary-color);
+            animation: pulse 2s infinite;
         }
 
         /* Efecto atmosférico para la box de clima */
         .weather-box-dynamic {
             position: relative;
             overflow: hidden;
-            min-height: 180px;
+            min-height: 240px; /* Aumentado para que entren las columnas de 7 días */
             background: #000000 !important;
             filter: drop-shadow(0 0 5px var(--primary-color));
             display: flex;
-            align-items: center;
+            flex-direction: column;
+            align-items: flex-start;
             justify-content: center;
         }
 
@@ -661,6 +680,7 @@
                         </div>
 
                         <div class="info-box mini-box weather-box-dynamic">
+                            <div id="weather-alert" class="weather-alert"></div>
                             <a class="weatherwidget-io" href="https://forecast7.com/es/n36s14/rauch/" data-label_1="RAUCH" data-label_2="CLIMA" data-font="Kanit" data-icons="Climacons Animated" data-days="7" data-theme="pure" data-basecolor="rgba(0,0,0,0)" data-textcolor="#ffffff" data-highcolor="#ff007f" data-lowcolor="#bc13fe" style="width: 100%;">RAUCH CLIMA</a>
                         </div>
                     </div>
