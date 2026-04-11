@@ -5,10 +5,10 @@
 const StatsApp = {
     // Datos de ejemplo basados en opinión pública actual
     candidates: [
-        { name: "Candidato A", pos: 35, neg: 55 },
-        { name: "Candidato B", pos: 42, neg: 38 },
-        { name: "Candidato C", pos: 28, neg: 60 },
-        { name: "Candidato D", pos: 48, neg: 42 }
+        { name: "Axel Kicillof", pos: 38, neg: 52 },
+        { name: "Cristina K.", pos: 34, neg: 58 },
+        { name: "Javier Milei", pos: 45, neg: 44 },
+        { name: "Patricia Bullrich", pos: 30, neg: 62 }
     ],
 
     init: function() {
@@ -41,15 +41,16 @@ const StatsApp = {
         if (!container) return;
 
         container.innerHTML = this.candidates.map(c => `
-            <div class="candidate-row">
-                <div class="candidate-name">
-                    <span>${c.name}</span>
-                    <span style="color: var(--primary-color)">${c.pos}%</span>
+            <div class="candidate-column">
+                <div class="bar-group">
+                    <div class="bar bar-pos" style="height: ${c.pos}%">
+                        <span class="perc-tag">${c.pos}%</span>
+                    </div>
+                    <div class="bar bar-neg" style="height: ${c.neg}%">
+                        <span class="perc-tag" style="color:#ccff00">${c.neg}%</span>
+                    </div>
                 </div>
-                <div class="bar-container">
-                    <div class="bar-pos" style="width: ${c.pos}%"></div>
-                    <div class="bar-neg" style="width: ${c.neg}%"></div>
-                </div>
+                <span class="name-tag">${c.name.split(' ').pop()}</span>
             </div>
         `).join('');
     }

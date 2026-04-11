@@ -352,45 +352,76 @@
 
         /* Box de Estadísticas Políticas */
         .stats-box-dynamic {
-            min-height: 300px;
+            min-height: 280px;
             background: #000000 !important;
             filter: drop-shadow(0 0 5px var(--primary-color));
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            padding: 20px !important;
         }
 
-        .candidate-row {
-            width: 100%;
-            margin-bottom: 10px;
+        #candidates-display {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+            flex-grow: 1;
+            height: 180px;
+            margin-top: 20px;
         }
 
-        .candidate-name {
-            font-size: 0.8rem;
+        .candidate-column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+        }
+
+        .bar-group {
+            display: flex;
+            align-items: flex-end;
+            gap: 4px;
+            height: 100%;
+        }
+
+        .bar {
+            width: 14px;
+            position: relative;
+            border-radius: 2px 2px 0 0;
+            transition: height 1s ease-in-out;
+        }
+
+        .bar-pos { background: #ff007f; box-shadow: 0 0 10px #ff007f; }
+        .bar-neg { background: #ccff00; box-shadow: 0 0 10px #ccff00; }
+
+        .perc-tag {
+            font-size: 0.55rem;
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-weight: 900;
+        }
+
+        .name-tag {
+            font-size: 0.6rem;
+            margin-top: 10px;
             text-transform: uppercase;
-            margin-bottom: 5px;
+            text-align: center;
+            line-height: 1.1;
+            font-weight: 600;
+            height: 25px;
             display: flex;
-            justify-content: space-between;
+            align-items: center;
         }
-
-        .bar-container {
-            height: 8px;
-            background: #111;
-            display: flex;
-            border-radius: 4px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .bar-pos { background: var(--primary-color); box-shadow: 0 0 10px var(--primary-color); }
-        .bar-neg { background: #333; }
 
         .stats-legend {
             display: flex;
             justify-content: space-around;
             font-size: 0.6rem;
-            margin-top: 10px;
+            margin-top: 15px;
             color: #666;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 10px;
         }
 
         .schedule-item {
