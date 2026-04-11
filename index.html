@@ -295,6 +295,10 @@
             flex-grow: 1;
         }
         
+        .about-header-box {
+            background: transparent; border: none; padding: 0; margin-bottom: 30px;
+        }
+
         .mini-box {
             padding: 15px !important;
         }
@@ -321,8 +325,15 @@
         .schedule-list {
             list-style: none;
             padding: 0;
-            margin-top: 15px;
+            margin-top: 0; /* Movido de inline style */
             flex-grow: 1;
+        }
+
+        .schedule-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0; /* Movido de inline style */
+            font-size: 0.85rem; /* Movido de inline style */
         }
 
         .retro-clock {
@@ -337,7 +348,7 @@
         }
 
         .stats-header {
-            font-size: 0.65rem;
+            font-size: 0.75rem; /* Ajustado para mejor legibilidad */
             color: var(--primary-color);
             display: flex;
             align-items: center;
@@ -465,10 +476,8 @@
         }
 
         .schedule-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px solid rgba(255, 0, 127, 0.1);
+            /* Estilos movidos a .schedule-list y .schedule-item global */
+            border-bottom: 1px solid rgba(255, 0, 127, 0.1); /* Mantener solo el borde aquí */
         }
 
         .schedule-time {
@@ -702,7 +711,7 @@
 
         <main>
             <section id="about">
-                <div class="info-box" style="background: transparent; border: none; padding: 0; margin-bottom: 30px;">
+                <div class="info-box about-header-box">
                     <h2>LA FRECUENCIA URBANA</h2>
                     <span class="sub-h2">Donde el asfalto toma la palabra.</span>
                 </div>
@@ -739,12 +748,12 @@
                     </div>
                     <div class="side-container">
                         <div class="info-box mini-box">
-                            <div class="schedule-list" style="margin-top: 0;">
-                                <div class="schedule-item" style="padding: 5px 0; font-size: 0.85rem;">
+                            <div class="schedule-list">
+                                <div class="schedule-item">
                                     <span class="schedule-time">20:00</span>
                                     <span class="schedule-desc">La Crotera-irl musica</span>
                                 </div>
-                                <div class="schedule-item" style="border: none; padding: 5px 0; font-size: 0.85rem;">
+                                <div class="schedule-item" style="border: none;">
                                     <span class="schedule-time">23:00</span>
                                     <span class="schedule-desc">Hablemos sin Gritar</span>
                                 </div>
@@ -760,7 +769,7 @@
                             <div id="contenedor-estadisticas"></div>
                             <div class="stats-legend">
                                 <span>Colores Neón: Positiva</span>
-                                <span><i style="color:#ccff00">●</i> Negativa</span>
+                                <span><span style="color:#ccff00">●</span> Negativa</span>
                             </div>
                             <div id="stats-source" style="font-size: 0.5rem; color: #666; text-align: center; margin-top: 8px; opacity: 0.8; font-style: italic;"></div>
                         </div>

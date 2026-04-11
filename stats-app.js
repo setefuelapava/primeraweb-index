@@ -3,12 +3,12 @@
  * Maneja la visualización de datos de candidatos
  */
 const StatsApp = {
-    version: "2026-04-D", // Versión con colores específicos por dirigente
+    version: "2026-04-E", // Versión actualizada con colores y datos de Abril 2026
     candidates: [
         { name: "Javier Milei", pos: 33, neg: 65, fuente: "Zuban Córdoba", color: "#ff4500" },
-        { name: "Patricia Bullrich", pos: 42, neg: 50, fuente: "Giacobbe", color: "#0056b3" },
-        { name: "Axel Kicillof", pos: 38, neg: 54, fuente: "Zuban Córdoba", color: "#00a86b" },
-        { name: "Cristina Kirchner", pos: 31, neg: 67, fuente: "Zuban Córdoba", color: "#7b2cbf" }
+        { name: "Patricia Bullrich", pos: 42.7, neg: 50.3, fuente: "Giacobbe", color: "#0056b3" },
+        { name: "Axel Kicillof", pos: 38, neg: 54, fuente: "Zuban Córdoba", color: "#00a86b" }, // Color inferido
+        { name: "Cristina Kirchner", pos: 31, neg: 67, fuente: "Zuban Córdoba", color: "#7b2cbf" } // Color inferido
     ],
 
     init: function() {
@@ -29,7 +29,7 @@ const StatsApp = {
                 const currentNames = this.candidates.map(c => c.name).join(',');
 
                 // Forzamos actualización si la versión es distinta o los nombres cambiaron
-                if (storedNames === currentNames && savedVersion === this.version) {
+                if (storedNames === currentNames && savedVersion === this.version && parsed.length === this.candidates.length) { // Añadida verificación de longitud
                     this.candidates = parsed;
                 }
             } catch (e) {
