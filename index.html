@@ -387,6 +387,13 @@
             padding: 5px !important;
             min-height: 400px;
             background: #000000 !important;
+            /* Genera el efecto neón en el contenido del widget */
+            filter: drop-shadow(0 0 2px var(--primary-color));
+        }
+
+        .tradingview-widget-container {
+            /* Refuerza el brillo para que los números resalten más */
+            filter: brightness(1.2) contrast(1.1);
         }
 
         .radio-box {
