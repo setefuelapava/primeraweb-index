@@ -231,10 +231,16 @@
 
         .section-header-row {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1.2fr 0.8fr;
             gap: 20px;
             align-items: stretch;
             margin-bottom: 30px;
+        }
+
+        .side-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
         .portal-box {
@@ -287,6 +293,10 @@
             color: #e0e0e0;
             flex-grow: 1;
         }
+        
+        .mini-box {
+            padding: 15px !important;
+        }
 
         .manifesto-text p {
             margin-bottom: 15px;
@@ -314,26 +324,38 @@
             flex-grow: 1;
         }
 
-        .weather-wrapper {
-            margin-top: 20px;
-            padding-top: 15px;
-            border-top: 1px solid rgba(255, 0, 127, 0.2);
-            filter: drop-shadow(0 0 2px var(--primary-color));
-        }
-
         .retro-clock {
             font-family: 'Kanit', sans-serif;
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             font-weight: 900;
             color: var(--primary-color);
             text-align: center;
             text-shadow: 0 0 10px var(--primary-color), 0 0 20px #bc13fe;
-            margin-bottom: 15px;
             letter-spacing: 4px;
-            background: rgba(0, 0, 0, 0.3);
-            padding: 10px;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 0, 127, 0.2);
+        }
+
+        /* Efecto atmosférico para la box de clima */
+        .weather-box-dynamic {
+            position: relative;
+            overflow: hidden;
+            min-height: 150px;
+            background: linear-gradient(to bottom, #0f020f, #050505) !important;
+            filter: drop-shadow(0 0 5px var(--primary-color));
+        }
+
+        .weather-box-dynamic::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 300%; height: 100%;
+            background: radial-gradient(circle, rgba(255, 0, 127, 0.08) 0%, transparent 70%);
+            animation: atmospheric-drift 15s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes atmospheric-drift {
+            from { transform: translateX(0); }
+            to { transform: translateX(30%); }
         }
 
         .schedule-item {
@@ -609,25 +631,25 @@
                             </blockquote>
                         </div>
                     </div>
-                    <div class="info-box">
-                        <h3>Programación</h3>
-                        <p style="font-size: 0.9rem; color: var(--primary-color); margin-bottom: 10px; font-weight: bold; text-transform: uppercase;">Viernes y Domingos</p>
-                        <div class="schedule-list">
-                            <div class="schedule-item">
-                                <span class="schedule-time">20:00 - 22:00</span>
-                                <span class="schedule-desc">La Crotera-irl musica</span>
-                            </div>
-                            <div class="schedule-item" style="border: none;">
-                                <span class="schedule-time">23:00 - 00:00</span>
-                                <span class="schedule-desc">Hablemos sin Gritar</span>
+                    <div class="side-container">
+                        <div class="info-box mini-box">
+                            <p style="font-size: 0.7rem; color: var(--primary-color); margin-bottom: 5px; font-weight: bold; text-transform: uppercase; letter-spacing: 2px;">Viernes y Domingos</p>
+                            <div class="schedule-list" style="margin-top: 0;">
+                                <div class="schedule-item" style="padding: 4px 0; font-size: 0.9rem;">
+                                    <span class="schedule-time">20:00</span>
+                                    <span class="schedule-desc">La Crotera-irl musica</span>
+                                </div>
+                                <div class="schedule-item" style="border: none; padding: 4px 0; font-size: 0.9rem;">
+                                    <span class="schedule-time">23:00</span>
+                                    <span class="schedule-desc">Hablemos sin Gritar</span>
+                                </div>
                             </div>
                         </div>
-                        <div class="weather-wrapper">
+                        <div class="info-box mini-box">
                             <div id="digital-clock" class="retro-clock">00:00:00</div>
+                        </div>
+                        <div class="info-box mini-box weather-box-dynamic">
                             <a class="weatherwidget-io" href="https://forecast7.com/es/n36s14/rauch/" data-label_1="RAUCH" data-label_2="PRONÓSTICO" data-font="Kanit" data-icons="Climacons Animated" data-days="7" data-theme="pure" data-basecolor="rgba(0,0,0,0)" data-textcolor="#ffffff" data-highcolor="#ff007f" data-lowcolor="#bc13fe" >RAUCH CLIMA</a>
-                            <script>
-                            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
-                            </script>
                         </div>
                     </div>
                 </div>
@@ -738,6 +760,11 @@
         }
         setInterval(updateClock, 1000);
         updateClock();
+
+        // Inicializar Widget de Clima (weatherwidget.io)
+        setTimeout(() => {
+            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+        }, 500);
 
         document.getElementById('contact-form').addEventListener('submit', () => {
             const gif = document.getElementById('success-gif');
