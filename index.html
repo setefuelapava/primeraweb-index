@@ -314,6 +314,13 @@
             flex-grow: 1;
         }
 
+        .weather-wrapper {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 0, 127, 0.2);
+            filter: drop-shadow(0 0 2px var(--primary-color));
+        }
+
         .schedule-item {
             display: flex;
             justify-content: space-between;
@@ -599,6 +606,12 @@
                                 <span class="schedule-time">23:00 - 00:00</span>
                                 <span class="schedule-desc">Hablemos sin Gritar</span>
                             </div>
+                        </div>
+                        <div class="weather-wrapper">
+                            <a class="weatherwidget-io" href="https://forecast7.com/es/n36s14/rauch/" data-label_1="RAUCH" data-label_2="CLIMA" data-theme="pure" data-basecolor="" data-textcolor="#ffffff" data-highcolor="#ff007f" data-lowcolor="#bc13fe" >RAUCH CLIMA</a>
+                            <script>
+                            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+                            </script>
                         </div>
                     </div>
                 </div>
