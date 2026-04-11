@@ -5,10 +5,10 @@
 const StatsApp = {
     // Datos de ejemplo basados en opinión pública actual
     candidates: [
-        { name: "Axel Kicillof", pos: 38, neg: 52 },
-        { name: "Cristina K.", pos: 34, neg: 58 },
-        { name: "Javier Milei", pos: 45, neg: 44 },
-        { name: "Patricia Bullrich", pos: 30, neg: 62 }
+        { name: "Axel Kicillof", pos: 37, neg: 56 },
+        { name: "Cristina Kirchner", pos: 31, neg: 64 },
+        { name: "Javier Milei", pos: 49, neg: 45 },
+        { name: "Patricia Bullrich", pos: 33, neg: 61 }
     ],
 
     init: function() {
@@ -50,7 +50,7 @@ const StatsApp = {
                         <span class="perc-tag" style="color:#ccff00">${c.neg}%</span>
                     </div>
                 </div>
-                <span class="name-tag">${c.name.split(' ').pop()}</span>
+                <span class="name-tag">${c.name}</span>
             </div>
         `).join('');
     }
