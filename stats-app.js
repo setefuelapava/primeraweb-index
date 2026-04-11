@@ -5,10 +5,10 @@
 const StatsApp = {
     // Datos de ejemplo basados en opinión pública actual
     candidates: [
-        { name: "Axel Kicillof", pos: 37, neg: 56 },
-        { name: "Cristina Kirchner", pos: 31, neg: 64 },
-        { name: "Javier Milei", pos: 49, neg: 45 },
-        { name: "Patricia Bullrich", pos: 33, neg: 61 }
+        { name: "Axel Kicillof", pos: 38, neg: 54 },
+        { name: "Cristina Kirchner", pos: 31, neg: 67 },
+        { name: "Javier Milei", pos: 33, neg: 65 },
+        { name: "Patricia Bullrich", pos: 42.7, neg: 50.3 }
     ],
 
     init: function() {
