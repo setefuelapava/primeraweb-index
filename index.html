@@ -335,65 +335,62 @@
             margin: 10px 0;
         }
 
-        .weather-alert {
+        .stats-header {
             font-size: 0.65rem;
-            color: #888;
+            color: var(--primary-color);
             display: flex;
             align-items: center;
             gap: 8px;
             margin-bottom: 12px;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             border-bottom: 1px solid rgba(255, 0, 127, 0.1);
             padding-bottom: 5px;
             width: 100%;
+            text-transform: uppercase;
+            font-weight: 900;
         }
 
-        .alert-icon {
-            color: var(--primary-color);
-            animation: pulse 2s infinite;
-        }
-
-        /* Efecto atmosférico para la box de clima */
-        .weather-box-dynamic {
-            position: relative;
-            overflow: hidden;
-            min-height: 400px; /* Aumentado para que quepan los 7 días y alertas */
+        /* Box de Estadísticas Políticas */
+        .stats-box-dynamic {
+            min-height: 300px;
             background: #000000 !important;
             filter: drop-shadow(0 0 5px var(--primary-color));
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: flex-start; /* Alineado al inicio para el flujo de datos */
+            gap: 15px;
         }
 
-        .weather-box-dynamic::before {
-            content: '';
-            position: absolute;
-            top: -100%; left: -100%;
-            width: 300%; height: 300%;
-            /* Simulación de lluvia neón */
-            background-image: linear-gradient(135deg, 
-                transparent 0%, 
-                transparent 48%, 
-                rgba(255, 0, 127, 0.1) 50%, 
-                transparent 52%, 
-                transparent 100%);
-            background-size: 60px 60px;
-            animation: atmospheric-drift 3s linear infinite;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .weatherwidget-io {
-            position: relative;
-            z-index: 1; /* Asegura que el clima esté sobre la lluvia */
-            display: block;
+        .candidate-row {
             width: 100%;
+            margin-bottom: 10px;
         }
 
-        @keyframes atmospheric-drift {
-            from { transform: translate(0, 0); }
-            to { transform: translate(60px, 60px); }
+        .candidate-name {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .bar-container {
+            height: 8px;
+            background: #111;
+            display: flex;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .bar-pos { background: var(--primary-color); box-shadow: 0 0 10px var(--primary-color); }
+        .bar-neg { background: #333; }
+
+        .stats-legend {
+            display: flex;
+            justify-content: space-around;
+            font-size: 0.6rem;
+            margin-top: 10px;
+            color: #666;
         }
 
         .schedule-item {
@@ -687,9 +684,13 @@
                             <div id="digital-clock" class="retro-clock">00:00:00</div>
                         </div>
 
-                        <div class="info-box mini-box weather-box-dynamic">
-                            <div id="weather-alert" class="weather-alert" style="position: relative; z-index: 2;"></div>
-                            <a class="weatherwidget-io" href="https://forecast7.com/es/n36s14/rauch/" data-label_1="RAUCH" data-label_2="PRONÓSTICO" data-font="Kanit" data-icons="Climacons Animated" data-days="7" data-theme="pure" data-basecolor="rgba(0,0,0,0)" data-textcolor="#ffffff" data-highcolor="#ff007f" data-lowcolor="#bc13fe" style="width: 100%;">RAUCH CLIMA</a>
+                        <div class="info-box mini-box stats-box-dynamic">
+                            <div class="stats-header">📊 Imagen Pública Dirigencial</div>
+                            <div id="candidates-display"></div>
+                            <div class="stats-legend">
+                                <span><i style="color:var(--primary-color)">●</i> Positiva</span>
+                                <span><i style="color:#333">●</i> Negativa</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -743,7 +744,7 @@
                 </div>
                 <script src="https://cdn.cloud.caster.fm/widgets/embed.js"></script>
             </section>
-            <script src="weather-app.js"></script>
+            <script src="stats-app.js"></script>
             <section>
                 <h2>Contacto</h2>
                 <form id="contact-form" action="https://docs.google.com/forms/d/e/1FAIpQLSf_NeTghg_UX7PvsTeJIMGp5yQ7dykIFTfcJ8n47-BQxpIelQ/formResponse" method="post" target="hidden_iframe">
