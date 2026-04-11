@@ -3,18 +3,18 @@
  * Maneja la visualización de datos de candidatos
  */
 const StatsApp = {
-    version: "2026-04-A", // Cambiamos la versión para forzar la actualización de datos
+    version: "2026-04-D", // Versión con colores específicos por dirigente
     candidates: [
-        { name: "Javier Milei", pos: 33, neg: 65 },
-        { name: "Patricia Bullrich", pos: 42.7, neg: 50.3 },
-        { name: "Axel Kicillof", pos: 38, neg: 54 },
-        { name: "Cristina Kirchner", pos: 31, neg: 67 }
+        { name: "Javier Milei", pos: 33, neg: 65, fuente: "Zuban Córdoba", color: "#ff4500" },
+        { name: "Patricia Bullrich", pos: 42, neg: 50, fuente: "Giacobbe", color: "#0056b3" },
+        { name: "Axel Kicillof", pos: 38, neg: 54, fuente: "Zuban Córdoba", color: "#00a86b" },
+        { name: "Cristina Kirchner", pos: 31, neg: 67, fuente: "Zuban Córdoba", color: "#7b2cbf" }
     ],
 
     init: function() {
         console.log("Stats System: Sincronizando datos de opinión pública...");
         this.loadData();
-        this.render();
+        this.actualizarGraficos();
         this.checkDailyUpdate();
     },
 
@@ -54,7 +54,9 @@ const StatsApp = {
             return;
         }
 
-        if (now - parseInt(lastUpdate) > 86400000) {
+        // Ciclo de actualización cada 24 horas (86400000 ms)
+        if (now - parseInt(lastUpdate) >= 86400000) {
+            console.log("Stats System: Iniciando actualización diaria (Ciclo 24hs)");
             localStorage.setItem('last_stats_update', now);
             this.applySmallVariation();
         }
@@ -68,17 +70,23 @@ const StatsApp = {
             c.neg = Math.max(5, Math.min(95, c.neg + varNeg));
         });
         this.saveData();
-        this.render();
+        this.actualizarGraficos();
     },
 
-    render: function() {
-        const container = document.getElementById('candidates-display');
+    actualizarGraficos: function() {
+        const container = document.getElementById('contenedor-estadisticas');
+        const sourceContainer = document.getElementById('stats-source');
         if (!container) return;
+
+        // Mostrar la fuente de los datos (resumen de Abril 2026)
+        if (sourceContainer) {
+            sourceContainer.textContent = "Fuentes: Zuban Córdoba / Giacobbe - Abril 2026";
+        }
 
         container.innerHTML = this.candidates.map(c => `
             <div class="candidate-column">
                 <div class="bar-group">
-                    <div class="bar bar-pos" style="height: ${c.pos}%">
+                    <div class="bar bar-pos" style="height: ${c.pos}%; background: ${c.color}; box-shadow: 0 0 12px ${c.color};">
                         <span class="perc-tag">${c.pos}%</span>
                     </div>
                     <div class="bar bar-neg" style="height: ${c.neg}%">
