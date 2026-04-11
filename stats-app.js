@@ -47,10 +47,10 @@ const StatsApp = {
                         <span class="perc-tag">${c.pos}%</span>
                     </div>
                     <div class="bar bar-neg" style="height: ${c.neg}%">
-                        <span class="perc-tag" style="color:#ccff00">${c.neg}%</span>
+                        <span class="perc-tag" style="color:#ccff00; top: -15px;">${c.neg}%</span>
                     </div>
                 </div>
-                <span class="name-tag">${c.name}</span>
+                <span class="name-tag">${c.name.replace(' ', '<br>')}</span>
             </div>
         `).join('');
     }
