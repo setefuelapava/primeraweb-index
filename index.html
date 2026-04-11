@@ -357,14 +357,13 @@
         .weather-box-dynamic {
             position: relative;
             overflow: hidden;
-            min-height: 450px; /* Aumentado para visualizar el pronóstico de MSN */
+            min-height: 220px; 
             background: #000000 !important;
             filter: drop-shadow(0 0 5px var(--primary-color));
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
-            padding: 0 !important;
+            justify-content: center;
         }
 
         .weather-box-dynamic::before {
@@ -681,15 +680,8 @@
                         </div>
 
                         <div class="info-box mini-box weather-box-dynamic">
-                            <div id="weather-alert" class="weather-alert" style="padding: 10px; margin-bottom: 0;"></div>
-                            <iframe 
-                                src="https://www.msn.com/es-ar/el-tiempo/pronostico/in-Rauch,Argentina?loc=eyJsIjoiUmF1Y2giLCJjIjoiQXJnZW50aW5hIiwiaSI6IkFSIiwiZyI6ImVzLWFyIiwieCI6Ii01OS4wODk3IiwieSI6Ii0zNi43NzUifQ%3D%3D&weadegreetype=C&ocid=winp2fp&cvid=0d0feeeb28f34a01ef9dd4e50b8457e7&content=NormalWeather_wxnw" 
-                                width="100%" 
-                                height="100%" 
-                                frameborder="0" 
-                                style="border: none; filter: invert(1) hue-rotate(180deg) brightness(0.8); pointer-events: auto;"
-                                title="Pronóstico Rauch MSN">
-                            </iframe>
+                            <div id="weather-alert" class="weather-alert"></div>
+                            <a class="weatherwidget-io" href="https://forecast7.com/es/n36s14/rauch/" data-label_1="RAUCH" data-label_2="CLIMA" data-font="Kanit" data-icons="Climacons Animated" data-days="7" data-theme="pure" data-basecolor="rgba(0,0,0,0)" data-textcolor="#ffffff" data-highcolor="#ff007f" data-lowcolor="#bc13fe" style="width: 100%;">RAUCH CLIMA</a>
                         </div>
                     </div>
                 </div>

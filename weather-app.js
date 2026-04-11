@@ -5,7 +5,19 @@
 const WeatherApp = {
     init: function() {
         console.log("Weather System: Sincronizando con satélites...");
+        this.injectWidgetEngine();
         this.initAlertSystem();
+    },
+
+    injectWidgetEngine: function() {
+        const scriptId = 'weatherwidget-io-js';
+        if (document.getElementById(scriptId)) return;
+
+        const script = document.createElement('script');
+        script.id = scriptId;
+        script.src = 'https://weatherwidget.io/js/widget.min.js';
+        script.async = true;
+        document.body.appendChild(script);
     },
 
     initAlertSystem: function() {
